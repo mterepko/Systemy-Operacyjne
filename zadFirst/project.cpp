@@ -1,5 +1,4 @@
 #include <ncurses.h>
-<<<<<<< HEAD
 #include <thread>
 #include <unistd.h>
 #include  <vector>
@@ -43,7 +42,7 @@ int main()
 	maxX = LINES;
 	maxY = COLS;
 	//we are getting dimensions of the window
-	mvprintw(LINES, COLS, "%d", maxX);
+	//mvprintw(LINES, COLS, "%d", maxX);
 	Ball::setScene(maxX, maxY);
 
 	
@@ -80,21 +79,7 @@ int main()
 	refWindow.join();
 	endwin();
 	}
-	
-=======
 
-
-
-
-int main()
-{
-
-initscr(); //initializes the screen, sets up memmory and cleans screen
-
-
-printw("hello");
-
->>>>>>> 9551bffdcefd9371357e1ce345c58bbcaeece65a
 
 	return 0;
 }
