@@ -1,4 +1,5 @@
 #include <ncurses.h>
+<<<<<<< HEAD
 #include <thread>
 #include <unistd.h>
 #include  <vector>
@@ -80,6 +81,20 @@ int main()
 	endwin();
 	}
 	
+=======
+
+
+
+
+int main()
+{
+
+initscr(); //initializes the screen, sets up memmory and cleans screen
+
+
+printw("hello");
+
+>>>>>>> 9551bffdcefd9371357e1ce345c58bbcaeece65a
 
 	return 0;
 }
