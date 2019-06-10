@@ -12,7 +12,8 @@ bool isProgramRunning = true;
 int delayPrint = 0; // variable helpoing to draw ball after 5 sec
 //function to refresh and print out Balls "o"
 void refreshWindow()
-{
+{	
+
 	while(isProgramRunning)
 	{
 		clear();
@@ -23,8 +24,18 @@ void refreshWindow()
 
 
 	refresh();
+	
 
-	usleep(10000);//0.05s
+	usleep(10000);//0.01s
+	}
+
+}
+void endWindow()
+{
+int ch = getch();
+	if(ch == KEY_LEFT)
+	{
+		isProgramRunning = false;
 	}
 
 }
@@ -38,7 +49,7 @@ int main()
 	initscr();
 	curs_set(0); //makes coursor invisible
 	
-
+	keypad(stdscr, TRUE);
 	maxX = LINES;
 	maxY = COLS;
 	//we are getting dimensions of the window
@@ -60,25 +71,30 @@ int main()
 	
 	}
 	thread refWindow(refreshWindow);
-	for(int i = 0; i<balls.size();i++)
-	{	
-		delayPrint++;
-		ballsMoving.push_back(balls.at(i).threadMove());
-		usleep(5000000);
-	}
-	int ch = getch(); //variable to get 'x' presing x exits program
-	if(ch == KEY_LEFT)
+	thread endWind(endWindow);
+	
+		for(int i = 0; i<balls.size();i++)
+		{		
+			delayPrint++;
+			ballsMoving.push_back(balls.at(i).threadMove());
+			usleep(5000000);
+		}
+		
+	//int ch = getch(); //variable to get 'x' presing x exits program
+	if(isProgramRunning == false)
 	{
-		Ball::turnOff();
+	
+		Ball::turnOff();//function taht stops balls movement
 		for(int i = 0; i<balls.size();i++)
 		{
 			ballsMoving.at(i).join();
 	
 		}
-	
+	}
+	endWind.join();
 	refWindow.join();
 	endwin();
-	}
+	
 
 
 	return 0;
