@@ -1,5 +1,5 @@
-#ifndef BALL_H
-#define BALL_H
+#ifndef ORDER_H
+#define ORDER_H
 
 #include <thread>
 #include <mutex>
@@ -23,6 +23,7 @@ int posX;
 int posY;
 static int maxX;
 static int maxY;
+static bool isSceneSet;
 void move();
 
 

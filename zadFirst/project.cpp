@@ -92,6 +92,7 @@ int main()
 	
 		}
 	}
+	usleep(2000000);
 	endWind.join();
 	refWindow.join();
 	endwin();
