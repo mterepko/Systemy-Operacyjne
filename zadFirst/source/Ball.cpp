@@ -48,21 +48,15 @@ while(isSceneSet)
 		{
 			if(posY==0)
 			{
-				// 1, 5, 3 only moves ball can do
+				// 5 only move ball can do
 				while(!isRightMove)
 				{
 					random = (rand() % 8) +1;
-					if(random == 3 || random == 1 || random == 5)
+					if(random == 5)
 					{
 						isRightMove = true;
-						
-						continue;
-
 					}
 				}
-				//should i have continue here?
-				continue;
-
 			}
 			if(posY==maxY)
 			{
@@ -70,100 +64,83 @@ while(isSceneSet)
 				while(!isRightMove)
 				{
 					random = (rand() % 8) +1;
-					if(random == 2 || random == 6 || random == 3)
+					if(random == 6)
 					{
 						isRightMove = true;
-						continue;
 					}
 				}
-				continue;
 			}
-			//1,2, 3, 5, 6
+			//3, 5, 6
 			while(!isRightMove)
 			{
 				random = (rand() % 8) +1;
-				if(random == 1 || random == 2 || random == 3 || random == 5 || random == 6)
+				if(random == 3 || random == 5 || random == 6)
 				{
 					isRightMove = true;
-					continue;
 				}
 			}
-			continue;
 		}
 		// ======================================================================== %%
 		if(posX==maxX)
 		{
 			if(posY==0)
 			{
-				// 1,4,8
+				// 8
 				while(!isRightMove)
 				{
 					random = (rand() % 8) +1;
-					if(random == 4 || random == 1 || random == 8)
+					if(random == 8)
 					{
 						isRightMove = true;
-						continue;
 					}
 				}
-				continue;
-
 			}
 			if(posY==maxY)
 			{
-				//7, 2, 4 
+				//7
 				while(!isRightMove)
 				{
 					random = (rand() % 8) +1;
-					if(random == 4 || random == 2 || random == 7)
+					if(random == 7)
 					{
-						isRightMove = true;
-						continue;
+						isRightMove = true;	
 					}
 				}
-				continue;
-
 			}
-			//1,2,4,7,8
+			//4,7,8
 			while(!isRightMove)
 			{
 				random = (rand() % 8) +1;
-				if(random == 1 || random == 2 || random == 4 || random == 7 || random == 8)
+				if(random == 4 || random == 7 || random == 8)
 				{
 					isRightMove = true;
-					continue;
 				}
 			}
-			continue;
 		}
 		//-------------------------%%%%%%%%%%%%%%%--------------------------------------
 		if(posY==0)
 		{	
-			//1,3,4,5,8
+			//1,5,8
 			while(!isRightMove)
 			{
 				random = (rand() % 8) +1;
-				if(random == 1 || random == 3 || random == 4 || random == 5 || random == 8)
+				if(random == 1 || random == 5 || random == 8)
 				{
 					isRightMove = true;
-					continue;
 				}
 			}
-			continue;
 		}
 		if(posY==maxY)
 		{
-			//2.3.5.6.7
+			//2 ,6.7
 			while(!isRightMove)
 			{
 				random = (rand() % 8) +1;
-				if(random == 12|| random == 3 || random == 5 || random == 6 || random == 7)
+				if(random == 2 || random == 6 || random == 7)
 				{
 					isRightMove = true;
-					continue;
 				}
 			}
-			continue;
-
 		}
 
 	}

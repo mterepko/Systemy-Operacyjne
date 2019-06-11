@@ -33,8 +33,9 @@ void refreshWindow()
 void endWindow()
 {
 int ch = getch();
-	if(ch == KEY_LEFT)
+	if(ch == 120 || ch == 88)
 	{
+		
 		isProgramRunning = false;
 	}
 
@@ -59,7 +60,7 @@ int main()
 	
 	
 	//setting position of start for balls
-	for(int i = 0; i< 3; i++)
+	for(int i = 0; i< 2; i++)
 	{
 		posX = rand() % maxX;
 		posY = rand() % maxY;
@@ -77,7 +78,7 @@ int main()
 		{		
 			delayPrint++;
 			ballsMoving.push_back(balls.at(i).threadMove());
-			usleep(5000000);
+			usleep(5000000);// 5 sec
 		}
 		
 	//int ch = getch(); //variable to get 'x' presing x exits program
