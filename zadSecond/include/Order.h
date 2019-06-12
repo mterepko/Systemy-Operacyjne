@@ -3,24 +3,31 @@
 
 #include <thread>
 #include <mutex>
-#include <time.h>
+#include <ctime>
+#include <string>
+#include <unistd.h>
 using namespace std;
 
 class Order
 {
 public:
 //konstr
-Order(int posX, int posY);
+Order(int id);
 ~Order();
 //destr
 int getPosX();
 int getPosY();
+string getSign();
+static bool empty;
+
 static void setScene(int x, int y);
 thread threadMove();
 
 private:
 int posX;
 int posY;
+bool  goAround;
+int id;
 static int maxX;
 static int maxY;
 static bool isSceneSet;
