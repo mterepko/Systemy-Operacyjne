@@ -19,7 +19,7 @@ void refreshWindow()
 		clear();
 		for(int i = 0; i <delayPrint;i++)
 		{
-			mvprintw(balls[i].getX(),balls[i].getY(),"o");
+			mvprintw(balls[i].getY(),balls[i].getX(),"o");
 		}
 
 
@@ -51,8 +51,8 @@ int main()
 	curs_set(0); //makes coursor invisible
 	
 	keypad(stdscr, TRUE);
-	maxX = LINES;
-	maxY = COLS;
+	maxX = COLS;
+	maxY = LINES;
 	//we are getting dimensions of the window
 	//mvprintw(LINES, COLS, "%d", maxX);
 	Ball::setScene(maxX, maxY);
@@ -60,7 +60,7 @@ int main()
 	
 	
 	//setting position of start for balls
-	for(int i = 0; i< 2; i++)
+	for(int i = 0; i< 10; i++)
 	{
 		posX = rand() % maxX;
 		posY = rand() % maxY;
@@ -78,7 +78,7 @@ int main()
 		{		
 			delayPrint++;
 			ballsMoving.push_back(balls.at(i).threadMove());
-			usleep(5000000);// 5 sec
+			usleep(2000000);// 2 sec
 		}
 		
 	//int ch = getch(); //variable to get 'x' presing x exits program

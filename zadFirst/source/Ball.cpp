@@ -177,7 +177,7 @@ while(isSceneSet)
 			posY++;
 			break;
 	}
-	usleep(200000);//sleep for 0.2 sec
+	usleep(10000);//sleep for 0.2 sec
 }
 // end of method move
 }
