@@ -4,7 +4,10 @@ int Order::maxX;
 int Order::maxY;
 bool Order::isSceneSet = false;
 bool Order::empty = true;
+int Order::count = 0;
+bool Order::synchro = false;
 mutex m;
+
 
 Order::Order(int id)
 {
@@ -45,57 +48,52 @@ void Order::move()
 		}
 		m.lock();
 		if(empty==false)
+
 		{
-			goAround=true;
+			first = false;
+			ready = true;
+			count++;
 		}
 		else
 		{
-			goAround=false;
+			first = true;
+			ready = false;
 			empty=false;
 		}
 		m.unlock();
-		while(goAround)
+		
+
+		for(int i=0; i < count; i++)
 		{
-			while(posY>maxY/3)
-			{
-				posY--;
-				usleep(100000);
-			}
-			while(posX<maxX*2/3)
-			{
-				posX++;
-				usleep(100000);
-			}
-			while(posY<maxY*2/3)
-			{
-				posY++;
-				usleep(100000);
-			}
-			while(posX>maxX/2)
-			{
-				posX--;
-				usleep(100000);
-			}
-			while(posY>maxY/2)
-			{
-				posY--;
-				usleep(100000);
-			}
+			posY++;
+		}
+		while(ready)
+		{
 			m.lock();
-			if(empty==true)
+			if(synchro == true)
 			{
-				empty=false;
-				goAround=false;
+				ready = false;
 			}
 			m.unlock();
 
 		}
-		int randTime=(rand() % 3) + 2;
-		posX++;
-		usleep(1000000*randTime);
-		m.lock();
-		empty=true;
-		m.unlock();
+
+		if(first == true)
+		{
+			int randTime=(rand() % 3) + 2;
+		
+			
+			usleep(1000000*randTime);
+			synchro = true;
+			
+			usleep(500);
+			synchro = false;
+			m.lock();
+			empty=true;
+			count = 0;
+
+			m.unlock();
+		}
 
 		while(posX<maxX)
 		{

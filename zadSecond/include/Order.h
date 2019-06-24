@@ -2,6 +2,7 @@
 #define ORDER_H
 
 #include <thread>
+#include <iostream>
 #include <mutex>
 #include <ctime>
 #include <string>
@@ -19,6 +20,9 @@ int getPosX();
 int getPosY();
 string getSign();
 static bool empty;
+static bool synchro;
+static int count;
+
 
 static void setScene(int x, int y);
 thread threadMove();
@@ -26,7 +30,9 @@ thread threadMove();
 private:
 int posX;
 int posY;
-bool  goAround;
+
+bool  ready;
+bool first;
 int id;
 static int maxX;
 static int maxY;
