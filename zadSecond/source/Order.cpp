@@ -7,6 +7,8 @@ bool Order::empty = true;
 int Order::count = 0;
 bool Order::synchro = false;
 mutex m;
+mutex mu;
+condition_variable cond;
 
 
 Order::Order(int id)
@@ -67,14 +69,12 @@ void Order::move()
 		{
 			posY++;
 		}
+
 		while(ready)
 		{
-			m.lock();
-			if(synchro == true)
-			{
-				ready = false;
-			}
-			m.unlock();
+			unique_lock<mutex> lck(mu);
+			cond.wait(lck);
+			ready = false;
 
 		}
 
@@ -84,10 +84,10 @@ void Order::move()
 		
 			
 			usleep(1000000*randTime);
-			synchro = true;
+			unique_lock<mutex> lck(mu);
 			
-			usleep(500);
-			synchro = false;
+			cond.notify_all();
+
 			m.lock();
 			empty=true;
 			count = 0;
